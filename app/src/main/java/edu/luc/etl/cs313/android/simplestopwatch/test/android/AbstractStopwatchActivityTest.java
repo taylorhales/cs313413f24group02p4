@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import android.widget.Button;
@@ -108,8 +109,8 @@ public abstract class AbstractStopwatchActivityTest {
     }
 
     protected int getDisplayedValue() {
-        final TextView ts = (TextView) getActivity().findViewById(R.id.seconds);
-        final TextView tm = (TextView) getActivity().findViewById(R.id.minutes);
+        final TextView ts = getActivity().findViewById(R.id.seconds);
+        final TextView tm = getActivity().findViewById(R.id.minutes);
         return SEC_PER_MIN * tvToInt(tm) + tvToInt(ts);
     }
 

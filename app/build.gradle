@@ -70,6 +70,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     testImplementation 'com.android.support.test:rules:1.0.2'
     testImplementation 'org.robolectric:robolectric:4.2'
+    testImplementation 'org.bouncycastle:bcprov-jdk15on:1.57'
     testImplementation 'com.android.support:appcompat-v7:27.1.1'
     androidTestImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support:appcompat-v7:27.1.1'

@@ -19,6 +19,6 @@ allprojects {
         jcenter()
     }
     tasks.withType(JavaCompile) {
-        options.compilerArgs << "-deprecation"
+        options.compilerArgs << "-Xlint:all"
     }
 }

@@ -68,14 +68,8 @@ In Android Studio: `Run > Run app`
 
 ## Unit tests including out-of-emulator system tests using Robolectric
 
-In Android Studio:
-
-* Before running tests, in the *Android* view right-click on `edu.luc.etl.cs313...test (test)` - if `Select ...` is one
-* of the visible menu items about 2/3 of the way down, click on that; if `Select ...` is not there, go to the next step
-* Now click `Run > Edit Configurations...` and under `Android JUnit` click on `cs313 in app`
-* On the *Configuration* tab, click the far-right icon in the *Working Directory* row and select `MODULE_DIR`, then click `OK`
-* *If you do not do this, running the unit tests from the Android view will not work!*
-* Finally, right-click on `edu.luc.etl.cs313...test (test)`, then choose `Run 'Tests in 'test''`
+In Android Studio, use `Tools > SDK Manager` to install Android 6.0 (API level 23) for the Robolectric tests to work (skip this step if API level 23 is already installed).
+Then, in the *Android* view, right-click on `edu.luc.etl.cs313...test (test)` and choose `Run 'Tests in 'test''`.
 
 You can also use Gradle:
 

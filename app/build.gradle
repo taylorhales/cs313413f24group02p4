@@ -6,8 +6,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.hiya:jacoco-android:0.2'
-        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.1'
-        classpath 'gradle.plugin.com.github.sherter.google-java-format:google-java-format-gradle-plugin:0.6'
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.3'
+        classpath 'gradle.plugin.com.github.sherter.google-java-format:google-java-format-gradle-plugin:0.9'
     }
 }
 
@@ -23,11 +23,13 @@ jacocoAndroidUnitTestReport {
 }
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "edu.luc.etl.cs313.android.stopwatch"
         minSdkVersion 15
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -62,16 +64,11 @@ android {
 
 dependencies {
     implementation 'junit:junit:4.13'
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'net.sourceforge.streamsupport:streamsupport:1.7.2'
     // several duplications on account of shared testcase superclass
     testImplementation 'junit:junit:4.13'
     testImplementation 'com.android.support.test:rules:1.0.2'
-    testImplementation 'org.robolectric:robolectric:4.3'
-    testImplementation 'org.bouncycastle:bcprov-jdk15on:1.62'
-    testImplementation 'com.android.support:appcompat-v7:27.1.1'
+    testImplementation 'org.robolectric:robolectric:4.4'
     androidTestImplementation 'junit:junit:4.13'
-    androidTestImplementation 'com.android.support:appcompat-v7:27.1.1'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
 }

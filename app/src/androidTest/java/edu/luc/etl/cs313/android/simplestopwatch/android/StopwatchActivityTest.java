@@ -1,6 +1,11 @@
 package edu.luc.etl.cs313.android.simplestopwatch.android;
 
-import android.test.ActivityInstrumentationTestCase2;
+import android.support.test.filters.SmallTest;
+import android.support.test.rule.ActivityTestRule;
+import android.support.test.runner.AndroidJUnit4;
+
+import org.junit.Rule;
+import org.junit.runner.RunWith;
 
 import edu.luc.etl.cs313.android.simplestopwatch.test.android.AbstractStopwatchActivityTest;
 
@@ -13,37 +18,16 @@ import edu.luc.etl.cs313.android.simplestopwatch.test.android.AbstractStopwatchA
  * @author laufer
  * @see "https://developer.android.com/training/testing/ui-testing/"
  */
-public class StopwatchActivityTest extends ActivityInstrumentationTestCase2<StopwatchAdapter> {
+@RunWith(AndroidJUnit4.class)
+@SmallTest
+public class StopwatchActivityTest extends AbstractStopwatchActivityTest {
 
-    /**
-     * Creates an {@link ActivityInstrumentationTestCase2} for the
-     * {@link StopwatchAdapter} activity.
-     */
-    public StopwatchActivityTest() {
-        super(StopwatchAdapter.class);
-        actualTest = new AbstractStopwatchActivityTest() {
-            @Override
-            protected StopwatchAdapter getActivity() {
-                // return activity instance provided by instrumentation test
-                if (stopwatchAdapter == null)
-                    stopwatchAdapter = StopwatchActivityTest.this.getActivity();
-                return stopwatchAdapter;
-            }
-        };
-    }
+    @Rule
+    public ActivityTestRule<StopwatchAdapter> activityRule =
+            new ActivityTestRule<>(StopwatchAdapter.class);
 
-    private static StopwatchAdapter stopwatchAdapter = null;
-    private AbstractStopwatchActivityTest actualTest;
-
-    public void testActivityCheckTestCaseSetUpProperly() {
-        actualTest.testActivityCheckTestCaseSetUpProperly();
-    }
-
-    public void testActivityScenarioRun() throws Throwable {
-        actualTest.testActivityScenarioRun();
-    }
-
-    public void testActivityScenarioRunLapReset() throws Throwable {
-        actualTest.testActivityScenarioRunLapReset();
+    @Override
+    protected StopwatchAdapter getActivity() {
+        return activityRule.getActivity();
     }
 }

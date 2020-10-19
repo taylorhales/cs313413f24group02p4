@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.Locale;
+
 import edu.luc.etl.cs313.android.simplestopwatch.R;
 import edu.luc.etl.cs313.android.simplestopwatch.common.Constants;
 import edu.luc.etl.cs313.android.simplestopwatch.common.StopwatchUIUpdateListener;
@@ -30,7 +33,7 @@ public class StopwatchAdapter extends Activity implements StopwatchUIUpdateListe
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // inject dependency on view so this adapter receives UI events
         setContentView(R.layout.activity_main);
@@ -41,7 +44,7 @@ public class StopwatchAdapter extends Activity implements StopwatchUIUpdateListe
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(final Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
@@ -61,12 +64,11 @@ public class StopwatchAdapter extends Activity implements StopwatchUIUpdateListe
     public void updateTime(final int time) {
         // UI adapter responsibility to schedule incoming events on UI thread
         runOnUiThread(() -> {
-            final TextView tvS = (TextView) findViewById(R.id.seconds);
-            final TextView tvM = (TextView) findViewById(R.id.minutes);
-            final int seconds = time % Constants.SEC_PER_MIN;
-            final int minutes = time / Constants.SEC_PER_MIN;
-            tvS.setText(Integer.toString(seconds / 10) + Integer.toString(seconds % 10));
-            tvM.setText(Integer.toString(minutes / 10) + Integer.toString(minutes % 10));
+            final TextView tvS = findViewById(R.id.seconds);
+            final TextView tvM = findViewById(R.id.minutes);
+            final Locale locale = Locale.getDefault();
+            tvS.setText(String.format(locale,"%02d", time % Constants.SEC_PER_MIN));
+            tvM.setText(String.format(locale,"%02d", time / Constants.SEC_PER_MIN));
         });
     }
 
@@ -77,7 +79,7 @@ public class StopwatchAdapter extends Activity implements StopwatchUIUpdateListe
     public void updateState(final int stateId) {
         // UI adapter responsibility to schedule incoming events on UI thread
         runOnUiThread(() -> {
-            final TextView stateName = (TextView) findViewById(R.id.stateName);
+            final TextView stateName = findViewById(R.id.stateName);
             stateName.setText(getString(stateId));
         });
     }

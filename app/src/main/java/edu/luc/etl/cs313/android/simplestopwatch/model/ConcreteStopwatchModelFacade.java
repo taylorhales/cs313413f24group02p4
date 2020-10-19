@@ -15,11 +15,11 @@ import edu.luc.etl.cs313.android.simplestopwatch.model.time.TimeModel;
  */
 public class ConcreteStopwatchModelFacade implements StopwatchModelFacade {
 
-    private StopwatchStateMachine stateMachine;
+    private final StopwatchStateMachine stateMachine;
 
-    private ClockModel clockModel;
+    private final ClockModel clockModel;
 
-    private TimeModel timeModel;
+    private final TimeModel timeModel;
 
     public ConcreteStopwatchModelFacade() {
         timeModel = new DefaultTimeModel();

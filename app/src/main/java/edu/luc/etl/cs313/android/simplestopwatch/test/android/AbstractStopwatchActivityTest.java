@@ -115,11 +115,11 @@ public abstract class AbstractStopwatchActivityTest {
     }
 
     protected Button getStartStopButton() {
-        return (Button) getActivity().findViewById(R.id.startStop);
+        return getActivity().findViewById(R.id.startStop);
     }
 
     protected Button getResetLapButton() {
-        return (Button) getActivity().findViewById(R.id.resetLap);
+        return getActivity().findViewById(R.id.resetLap);
     }
 
     /**

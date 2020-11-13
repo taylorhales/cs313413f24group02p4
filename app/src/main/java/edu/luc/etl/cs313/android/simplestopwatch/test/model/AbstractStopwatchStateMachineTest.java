@@ -9,9 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import edu.luc.etl.cs313.android.simplestopwatch.R;
-import edu.luc.etl.cs313.android.simplestopwatch.common.StopwatchUIUpdateListener;
+import edu.luc.etl.cs313.android.simplestopwatch.common.StopwatchModelListener;
 import edu.luc.etl.cs313.android.simplestopwatch.model.clock.ClockModel;
-import edu.luc.etl.cs313.android.simplestopwatch.model.clock.OnTickListener;
+import edu.luc.etl.cs313.android.simplestopwatch.model.clock.TickListener;
 import edu.luc.etl.cs313.android.simplestopwatch.model.state.StopwatchStateMachine;
 import edu.luc.etl.cs313.android.simplestopwatch.model.time.TimeModel;
 
@@ -50,7 +50,7 @@ public abstract class AbstractStopwatchStateMachineTest {
         this.model = model;
         if (model == null)
             return;
-        this.model.setUIUpdateListener(dependency);
+        this.model.setModelListener(dependency);
         this.model.actionInit();
     }
 
@@ -144,7 +144,7 @@ public abstract class AbstractStopwatchStateMachineTest {
  *
  * @author laufer
  */
-class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchUIUpdateListener {
+class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchModelListener {
 
     private int timeValue = -1, stateId = -1;
 
@@ -165,17 +165,17 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchUIUpdateL
     }
 
     @Override
-    public void updateTime(final int timeValue) {
+    public void onTimeUpdate(final int timeValue) {
         this.timeValue = timeValue;
     }
 
     @Override
-    public void updateState(final int stateId) {
+    public void onStateUpdate(final int stateId) {
         this.stateId = stateId;
     }
 
     @Override
-    public void setOnTickListener(OnTickListener listener) {
+    public void setTickListener(TickListener listener) {
         throw new UnsupportedOperationException();
     }
 

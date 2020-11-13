@@ -14,10 +14,10 @@ public class DefaultClockModel implements ClockModel {
 
     private Timer timer;
 
-    private OnTickListener listener;
+    private TickListener listener;
 
     @Override
-    public void setOnTickListener(final OnTickListener listener) {
+    public void setTickListener(final TickListener listener) {
         this.listener = listener;
     }
 

@@ -1,6 +1,6 @@
 package edu.luc.etl.cs313.android.simplestopwatch.model.state;
 
-import edu.luc.etl.cs313.android.simplestopwatch.common.StopwatchUIUpdateListener;
+import edu.luc.etl.cs313.android.simplestopwatch.common.StopwatchModelListener;
 import edu.luc.etl.cs313.android.simplestopwatch.model.clock.ClockModel;
 import edu.luc.etl.cs313.android.simplestopwatch.model.time.TimeModel;
 
@@ -27,14 +27,14 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
 
     protected void setState(final StopwatchState state) {
         this.state = state;
-        uiUpdateListener.updateState(state.getId());
+        listener.onStateUpdate(state.getId());
     }
 
-    private StopwatchUIUpdateListener uiUpdateListener;
+    private StopwatchModelListener listener;
 
     @Override
-    public void setUIUpdateListener(final StopwatchUIUpdateListener uiUpdateListener) {
-        this.uiUpdateListener = uiUpdateListener;
+    public void setModelListener(final StopwatchModelListener listener) {
+        this.listener = listener;
     }
 
     // forward event uiUpdateListener methods to the current state
@@ -44,8 +44,8 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     @Override public synchronized void onLapReset()  { state.onLapReset(); }
     @Override public synchronized void onTick()      { state.onTick(); }
 
-    @Override public void updateUIRuntime() { uiUpdateListener.updateTime(timeModel.getRuntime()); }
-    @Override public void updateUILaptime() { uiUpdateListener.updateTime(timeModel.getLaptime()); }
+    @Override public void updateUIRuntime() { listener.onTimeUpdate(timeModel.getRuntime()); }
+    @Override public void updateUILaptime() { listener.onTimeUpdate(timeModel.getLaptime()); }
 
     // known states
     private final StopwatchState STOPPED     = new StoppedState(this);

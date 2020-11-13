@@ -1,11 +1,10 @@
-package edu.luc.etl.cs313.android.simplestopwatch.model.clock;
+package edu.luc.etl.cs313.android.simplestopwatch.common;
 
 /**
- * The active model of the internal clock that periodically emits tick events.
+ * A startable component.
  *
  * @author laufer
  */
-public interface ClockModel extends OnTickSource {
+public interface Startable {
     void start();
-    void stop();
 }

@@ -10,7 +10,7 @@ import java.util.Locale;
 
 import edu.luc.etl.cs313.android.simplestopwatch.R;
 import edu.luc.etl.cs313.android.simplestopwatch.common.Constants;
-import edu.luc.etl.cs313.android.simplestopwatch.common.StopwatchUIUpdateListener;
+import edu.luc.etl.cs313.android.simplestopwatch.common.StopwatchModelListener;
 import edu.luc.etl.cs313.android.simplestopwatch.model.ConcreteStopwatchModelFacade;
 import edu.luc.etl.cs313.android.simplestopwatch.model.StopwatchModelFacade;
 
@@ -19,7 +19,7 @@ import edu.luc.etl.cs313.android.simplestopwatch.model.StopwatchModelFacade;
  *
  * @author laufer
  */
-public class StopwatchAdapter extends Activity implements StopwatchUIUpdateListener {
+public class StopwatchAdapter extends Activity implements StopwatchModelListener {
 
     private static String TAG = "stopwatch-android-activity";
 
@@ -40,7 +40,7 @@ public class StopwatchAdapter extends Activity implements StopwatchUIUpdateListe
         // inject dependency on model into this so model receives UI events
         this.setModel(new ConcreteStopwatchModelFacade());
         // inject dependency on this into model to register for UI updates
-        model.setUIUpdateListener(this);
+        model.setModelListener(this);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class StopwatchAdapter extends Activity implements StopwatchUIUpdateListe
     @Override
     protected void onStart() {
         super.onStart();
-        model.onStart();
+        model.start();
     }
 
     // TODO remaining lifecycle methods
@@ -61,7 +61,7 @@ public class StopwatchAdapter extends Activity implements StopwatchUIUpdateListe
      * Updates the seconds and minutes in the UI.
      * @param time
      */
-    public void updateTime(final int time) {
+    public void onTimeUpdate(final int time) {
         // UI adapter responsibility to schedule incoming events on UI thread
         runOnUiThread(() -> {
             final TextView tvS = findViewById(R.id.seconds);
@@ -76,7 +76,7 @@ public class StopwatchAdapter extends Activity implements StopwatchUIUpdateListe
      * Updates the state name in the UI.
      * @param stateId
      */
-    public void updateState(final int stateId) {
+    public void onStateUpdate(final int stateId) {
         // UI adapter responsibility to schedule incoming events on UI thread
         runOnUiThread(() -> {
             final TextView stateName = findViewById(R.id.stateName);

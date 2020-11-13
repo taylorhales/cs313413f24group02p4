@@ -7,7 +7,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.Test;
 
 import edu.luc.etl.cs313.android.simplestopwatch.model.clock.ClockModel;
-import edu.luc.etl.cs313.android.simplestopwatch.model.clock.OnTickListener;
 
 
 /**
@@ -45,7 +44,7 @@ public abstract class AbstractClockModelTest {
         // use a thread-safe object because the timer inside the
         // clock has its own thread
         final AtomicInteger i = new AtomicInteger(0);
-        model.setOnTickListener(i::incrementAndGet);
+        model.setTickListener(i::incrementAndGet);
         Thread.sleep(5500);
         assertEquals(0, i.get());
     }
@@ -58,7 +57,7 @@ public abstract class AbstractClockModelTest {
     @Test
     public void testRunning() throws InterruptedException {
         final AtomicInteger i = new AtomicInteger(0);
-        model.setOnTickListener(i::incrementAndGet);
+        model.setTickListener(i::incrementAndGet);
         model.start();
         Thread.sleep(5500);
         model.stop();

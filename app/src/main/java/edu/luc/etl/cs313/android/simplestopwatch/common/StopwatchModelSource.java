@@ -6,6 +6,6 @@ package edu.luc.etl.cs313.android.simplestopwatch.common;
  *
  * @author laufer
  */
-public interface StopwatchUIUpdateSource {
-    void setUIUpdateListener(StopwatchUIUpdateListener listener);
+public interface StopwatchModelSource {
+    void setUIUpdateListener(StopwatchModelListener listener);
 }

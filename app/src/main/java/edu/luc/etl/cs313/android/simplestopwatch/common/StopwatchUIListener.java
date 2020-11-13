@@ -5,7 +5,7 @@ package edu.luc.etl.cs313.android.simplestopwatch.common;
  *
  * @author laufer
  */
-public interface StopwatchUIListener {
+public interface StopwatchViewListener {
     void onStartStop();
     void onLapReset();
 }

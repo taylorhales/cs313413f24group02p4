@@ -1,9 +1,10 @@
-package edu.luc.etl.cs313.android.simplestopwatch.test.model.clock;
+package edu.luc.etl.cs313.android.simplestopwatch.test.model;
 
 import org.junit.After;
 import org.junit.Before;
 
 import edu.luc.etl.cs313.android.simplestopwatch.model.clock.DefaultClockModel;
+import edu.luc.etl.cs313.android.simplestopwatch.test.model.AbstractClockModelTest;
 
 /**
  * Concrete testcase subclass for the default clock model implementation.

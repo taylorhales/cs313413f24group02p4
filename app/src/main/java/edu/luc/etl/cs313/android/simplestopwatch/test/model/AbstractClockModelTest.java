@@ -1,4 +1,4 @@
-package edu.luc.etl.cs313.android.simplestopwatch.test.model.clock;
+package edu.luc.etl.cs313.android.simplestopwatch.test.model;
 
 import static org.junit.Assert.assertEquals;
 

@@ -1,4 +1,4 @@
-package edu.luc.etl.cs313.android.simplestopwatch.test.model.state;
+package edu.luc.etl.cs313.android.simplestopwatch.test.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

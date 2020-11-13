@@ -74,8 +74,10 @@ public abstract class AbstractStopwatchStateMachineTest {
     @Test
     public void testScenarioRun() {
         assertTimeEquals(0);
+        assertFalse(dependency.isStarted());
         // directly invoke the button press event handler methods
         model.onStartStop();
+        assertTrue(dependency.isStarted());
         onTickRepeat(5);
         assertTimeEquals(5);
     }
@@ -90,6 +92,7 @@ public abstract class AbstractStopwatchStateMachineTest {
     @Test
     public void testScenarioRunLapReset() {
         assertTimeEquals(0);
+        assertFalse(dependency.isStarted());
         // directly invoke the button press event handler methods
         model.onStartStop();
         assertEquals(R.string.RUNNING, dependency.getState());

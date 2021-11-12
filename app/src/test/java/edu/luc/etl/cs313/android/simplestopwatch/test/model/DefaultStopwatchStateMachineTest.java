@@ -4,7 +4,6 @@ import org.junit.After;
 import org.junit.Before;
 
 import edu.luc.etl.cs313.android.simplestopwatch.model.state.DefaultStopwatchStateMachine;
-import edu.luc.etl.cs313.android.simplestopwatch.test.model.AbstractStopwatchStateMachineTest;
 
 /**
  * Concrete testcase subclass for the default stopwatch state machine

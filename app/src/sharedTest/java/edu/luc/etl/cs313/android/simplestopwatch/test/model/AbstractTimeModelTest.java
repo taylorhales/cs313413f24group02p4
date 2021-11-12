@@ -45,8 +45,8 @@ public abstract class AbstractTimeModelTest {
      */
     @Test
     public void testIncrementRuntimeOne() {
-        final int rt = model.getRuntime();
-        final int lt = model.getLaptime();
+        final var rt = model.getRuntime();
+        final var lt = model.getLaptime();
         model.incRuntime();
         assertEquals((rt + SEC_PER_TICK) % SEC_PER_MIN, model.getRuntime());
         assertEquals(lt, model.getLaptime());
@@ -71,16 +71,16 @@ public abstract class AbstractTimeModelTest {
      */
     @Test
     public void testLaptime() {
-        final int rt = model.getRuntime();
-        final int lt = model.getLaptime();
-        for (int i = 0; i < 5; i ++) {
+        final var rt = model.getRuntime();
+        final var lt = model.getLaptime();
+        for (var i = 0; i < 5; i ++) {
             model.incRuntime();
         }
         assertEquals(rt + 5, model.getRuntime());
         assertEquals(lt, model.getLaptime());
         model.setLaptime();
         assertEquals(rt + 5, model.getLaptime());
-        for (int i = 0; i < 5; i ++) {
+        for (var i = 0; i < 5; i ++) {
             model.incRuntime();
         }
         assertEquals(rt + 10, model.getRuntime());

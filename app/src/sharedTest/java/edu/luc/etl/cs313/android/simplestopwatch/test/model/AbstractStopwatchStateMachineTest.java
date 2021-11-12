@@ -124,7 +124,7 @@ public abstract class AbstractStopwatchStateMachineTest {
      *  @param n the number of tick events
      */
     protected void onTickRepeat(final int n) {
-        for (int i = 0; i < n; i++)
+        for (var i = 0; i < n; i++)
             model.onTick();
     }
 

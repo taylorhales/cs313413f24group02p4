@@ -22,7 +22,7 @@ jacocoAndroidUnitTestReport {
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "31.0.0"
 
     defaultConfig {
         applicationId "edu.luc.etl.cs313.android.clickcounter"

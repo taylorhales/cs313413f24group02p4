@@ -1,8 +1,11 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.hiya.jacoco-android'
+apply plugin: 'com.github.kt3k.coveralls'
+apply plugin: 'com.github.sherter.google-java-format'
+
 buildscript {
     repositories {
-        google()
-        jcenter()
-        maven { url "https://plugins.gradle.org/m2/" }
+        gradlePluginPortal()
     }
     dependencies {
         classpath 'com.hiya:jacoco-android:0.2'
@@ -10,11 +13,6 @@ buildscript {
         classpath 'gradle.plugin.com.github.sherter.google-java-format:google-java-format-gradle-plugin:0.9'
     }
 }
-
-apply plugin: 'com.android.application'
-apply plugin: 'com.hiya.jacoco-android'
-apply plugin: 'com.github.kt3k.coveralls'
-apply plugin: 'com.github.sherter.google-java-format'
 
 jacocoAndroidUnitTestReport {
     csv.enabled false
@@ -27,7 +25,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "edu.luc.etl.cs313.android.stopwatch"
+        applicationId "edu.luc.etl.cs313.android.clickcounter"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
@@ -44,9 +42,8 @@ android {
         }
     }
     compileOptions {
-        coreLibraryDesugaringEnabled true
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     testOptions {
         unitTests.returnDefaultValues = true
@@ -64,9 +61,6 @@ android {
 }
 
 dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.9'
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'junit:junit:4.13'
     // several duplications on account of shared testcase superclass
     testImplementation 'junit:junit:4.13'
     testImplementation 'com.android.support.test:rules:1.0.2'

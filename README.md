@@ -55,14 +55,14 @@ Android application.  The original java code can be found
 
 # Setting up the Environment
 
-Check out the project using Android Studio. This creates the `local.properties` file
+Check out the project using IntelliJ IDEA. This creates the `local.properties` file
 with the required line
 
     sdk.dir=<root folder of Android Studio's Android SDK installation>
 
 # Running the Application
 
-In Android Studio: `Run > Run app`
+In IntelliJ: `Run > Run app`
 
 # Running the Tests
 
@@ -73,7 +73,7 @@ Then, in the *Android* view, right-click on `edu.luc.etl.cs313...test (test)` an
 
 You can also use Gradle:
 
-    $ ./gradlew testDebug # leave out the "./" on the Windows command line
+    $ ./gradlew testDebug
 
 You can view the resulting test reports in HTML by opening this file in your browser:
 
@@ -83,7 +83,7 @@ You can view the resulting test reports in HTML by opening this file in your bro
 
 In Gradle:
 
-    $ ./gradlew jacocoTestDebugUnitTestReport # leave out "./" on the Windows command line
+    $ ./gradlew jacocoTestDebugUnitTestReport
 
 You can view the resulting test reports in HTML by opening this file in your browser:
 
@@ -97,4 +97,4 @@ In Android Studio:
 
 You can also use Gradle:
 
-    $ ./gradlew connectedDebugAndroidTest # leave out "./" on the Windows command line
+    $ ./gradlew connectedDebugAndroidTest

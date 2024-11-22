@@ -10,10 +10,13 @@ class RunningState implements StopwatchState {
 
     private final StopwatchSMStateView sm;
 
+
+
     @Override
     public void onStartStop() {
         sm.actionStop();
         sm.toStoppedState();
+
     }
 
     @Override
@@ -27,6 +30,13 @@ class RunningState implements StopwatchState {
         sm.actionInc();
         sm.toRunningState();
     }
+
+    @Override
+    public void onIncrement() {
+        sm.actionIncCount();
+        sm.toIncrementingState();
+    }
+
 
     @Override
     public void updateView() {

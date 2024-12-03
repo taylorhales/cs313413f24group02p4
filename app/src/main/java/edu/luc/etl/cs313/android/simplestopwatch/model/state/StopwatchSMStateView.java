@@ -13,6 +13,7 @@ interface StopwatchSMStateView {
     void toStoppedState();
     void toLapRunningState();
     void toLapStoppedState();
+    void toIncrementingState();
 
     // actions
     void actionInit();
@@ -22,6 +23,7 @@ interface StopwatchSMStateView {
     void actionLap();
     void actionInc();
     void actionUpdateView();
+    void actionIncCount();
 
     // state-dependent UI updates
     void updateUIRuntime();

@@ -20,6 +20,8 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
 
     private final ClockModel clockModel;
 
+    public int runCount = 0;
+
     /**
      * The internal state of this adapter component. Required for the State pattern.
      */
@@ -43,6 +45,7 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     @Override public synchronized void onStartStop() { state.onStartStop(); }
     @Override public synchronized void onLapReset()  { state.onLapReset(); }
     @Override public synchronized void onTick()      { state.onTick(); }
+    @Override public synchronized void onIncrement() { state.onIncrement(); }
 
     @Override public void updateUIRuntime() { listener.onTimeUpdate(timeModel.getRuntime()); }
     @Override public void updateUILaptime() { listener.onTimeUpdate(timeModel.getLaptime()); }
@@ -52,12 +55,14 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     private final StopwatchState RUNNING     = new RunningState(this);
     private final StopwatchState LAP_RUNNING = new LapRunningState(this);
     private final StopwatchState LAP_STOPPED = new LapStoppedState(this);
+    private final StopwatchState INCREMENTING= new IncrementingState(this);
 
     // transitions
-    @Override public void toRunningState()    { setState(RUNNING); }
-    @Override public void toStoppedState()    { setState(STOPPED); }
-    @Override public void toLapRunningState() { setState(LAP_RUNNING); }
-    @Override public void toLapStoppedState() { setState(LAP_STOPPED); }
+    @Override public void toRunningState()      { setState(RUNNING); }
+    @Override public void toStoppedState()      { setState(STOPPED); }
+    @Override public void toLapRunningState()   { setState(LAP_RUNNING); }
+    @Override public void toLapStoppedState()   { setState(LAP_STOPPED); }
+    @Override public void toIncrementingState() { setState(INCREMENTING);  }
 
     // actions
     @Override public void actionInit()       { toStoppedState(); actionReset(); }
@@ -67,4 +72,5 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     @Override public void actionLap()        { timeModel.setLaptime(); }
     @Override public void actionInc()        { timeModel.incRuntime(); actionUpdateView(); }
     @Override public void actionUpdateView() { state.updateView(); }
+    @Override public void actionIncCount()   { runCount++; timeModel.setRunCount(runCount); actionUpdateView(); }
 }

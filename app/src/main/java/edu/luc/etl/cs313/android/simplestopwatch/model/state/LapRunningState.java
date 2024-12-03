@@ -29,6 +29,12 @@ class LapRunningState implements StopwatchState {
     }
 
     @Override
+    public void onIncrement() {
+        sm.actionIncCount();
+        sm.toIncrementingState();
+    }
+
+    @Override
     public void updateView() {
         sm.updateUILaptime();
     }

@@ -11,11 +11,13 @@
     <string name="minutes">00</string>
     <string name="seconds">00</string>
     <string name="colon">:</string>
+    <string name="activate">Activate</string>
 
     <!-- model state display names -->
     <string name="STOPPED">Stopped</string>
     <string name="RUNNING">Running</string>
     <string name="LAP_RUNNING">Lap/Running</string>
     <string name="LAP_STOPPED">Lap/Stopped</string>
+    <string name="INCREMENTING">Incrementing</string>
 
 </resources>

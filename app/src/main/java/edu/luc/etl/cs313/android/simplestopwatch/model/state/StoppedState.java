@@ -30,7 +30,7 @@ class StoppedState implements StopwatchState {
 
     @Override
     public void onTick() {
-        throw new UnsupportedOperationException("onTick");
+        sm.actionRingTheAlarm(); // trigger alarm action while in StoppedState
     }
 
     @Override

@@ -73,4 +73,6 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     @Override public void actionInc()        { timeModel.incRuntime(); actionUpdateView(); }
     @Override public void actionUpdateView() { state.updateView(); }
     @Override public void actionIncCount()   { runCount++; timeModel.setRunCount(runCount); actionUpdateView(); }
+    // notify listener to play the alarm sound
+    @Override public void actionRingTheAlarm() {listener.playDefaultNotification();}
 }

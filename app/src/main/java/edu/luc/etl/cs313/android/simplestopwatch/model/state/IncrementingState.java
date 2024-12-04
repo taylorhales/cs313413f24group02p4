@@ -29,9 +29,7 @@ class IncrementingState implements StopwatchState {
     }
 
     @Override
-    public void onTick() {
-        throw new UnsupportedOperationException("onTick");
-    }
+    public void onTick() {throw new UnsupportedOperationException("onTick");}
 
     @Override
     public void updateView() {

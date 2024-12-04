@@ -5,6 +5,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
+import android.content.Context; // for accessing the application context
+import android.media.AudioAttributes; // for configuring the audio playback attributes
+import android.media.MediaPlayer; // for playing the notification sound
+import android.media.RingtoneManager; // for accessing the default notification sound URI
+import android.net.Uri;  // for handling the URI of the notification sound
+import java.io.IOException; // for handling IOExceptions that might occur with MediaPlayer
 
 import java.util.Locale;
 
@@ -30,6 +36,41 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
 
     protected void setModel(final StopwatchModelFacade model) {
         this.model = model;
+    }
+
+    /** Plays the default notification sound. */
+    public void playDefaultNotification(){
+        // get the URI for the default notification sound with RingtoneManager
+        final Uri defaultRingtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+
+        // create new instance of MediaPlayer for playing the notification
+        final MediaPlayer mediaPlayer = new MediaPlayer();
+
+        // get application context for avoiding memory leaks with long-lived references
+        final Context context = getApplicationContext();
+
+        try{
+            // set data source for the MediaPlayer with the default notification sound URI
+            mediaPlayer.setDataSource(context, defaultRingtoneUri);
+
+            // configure audio attributes for the MediaPlayer
+            mediaPlayer.setAudioAttributes(new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_ALARM) // the usage is for alarms
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)  // content type sound for UI feedback
+                    .build());
+
+            // prepare MediaPlayer for playback, synchronously loads the data for playback
+            mediaPlayer.prepare();
+
+            // set a listener to release MediaPlayer resources when playback is completed
+            mediaPlayer.setOnCompletionListener(MediaPlayer::release);
+
+            // start playing the alarm sound
+            mediaPlayer.start();
+        } catch (final IOException ex){
+            // if an IOException occurs, wrap it in a RuntimeException and throw it
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override

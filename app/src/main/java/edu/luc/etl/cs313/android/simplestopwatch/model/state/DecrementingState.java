@@ -43,7 +43,7 @@ class DecrementingState implements StopwatchState {
         // stopped state when 0 is reached
         sm.actionDecCount();
         if (sm.runCount == 0) {
-            sm.toRunningState();
+            sm.toAlarmingState();
         }
     }
 

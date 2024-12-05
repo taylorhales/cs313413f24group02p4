@@ -11,4 +11,5 @@ public interface StopwatchModelListener {
     void onTimeUpdate(int timeValue);
     void onStateUpdate(int stateId);
     void playDefaultNotification();  // triggers alarm notification sound when stopwatch reaches set event
+    void playBeep();  // triggers beep tone when stopwatch reaches set event
 }

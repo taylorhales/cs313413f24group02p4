@@ -113,4 +113,7 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
 
     // notify listener to play the alarm sound
     @Override public void actionRingTheAlarm() {listener.playDefaultNotification();}
+
+    // notify listener to play beep tone
+    @Override public void actionBeep() {listener.playBeep();}
 }

@@ -30,6 +30,7 @@ class IncrementingState implements StopwatchState {
         sm.resetTickCount();
         sm.actionReset();
         if (sm.getRunCount() == 99) {
+            sm.actionBeep(); // play beep notification before decrementing from max
             sm.toDecrementingState();
         }
 
@@ -42,7 +43,7 @@ class IncrementingState implements StopwatchState {
         // if yes then start decrementing
         sm.incTickCount();
         if (sm.getTickCount() > 3) {
-            // beep
+            sm.actionBeep();  // play beep notification before decrementing
             sm.toDecrementingState();
         }
     }

@@ -2,6 +2,8 @@ package edu.luc.etl.cs313.android.simplestopwatch.android;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
@@ -11,6 +13,8 @@ import android.media.MediaPlayer; // for playing the notification sound
 import android.media.RingtoneManager; // for accessing the default notification sound URI
 import android.net.Uri;  // for handling the URI of the notification sound
 import java.io.IOException; // for handling IOExceptions that might occur with MediaPlayer
+import android.media.AudioManager; // for managing audio streams
+import android.media.ToneGenerator;  // for generating simple tones for the beep
 
 import java.util.Locale;
 
@@ -71,6 +75,16 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
             // if an IOException occurs, wrap it in a RuntimeException and throw it
             throw new RuntimeException(ex);
         }
+    }
+
+    /** plays the beep sound that happens before decrementing */
+    public void playBeep(){
+        // ToneGenerator instance with specific stream type & volume
+        ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100);
+        // play a short beep tone
+        toneGenerator.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 300);
+        // release ToneGenerator after a delay to ensure the tone completes
+        new Handler(Looper.getMainLooper()).postDelayed(toneGenerator::release, 200);
     }
 
     @Override

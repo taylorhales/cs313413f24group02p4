@@ -51,6 +51,9 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
         tickCount = 0;
     }
 
+    @Override
+    public int getRunCount() { return runCount; }
+
     /**
      * The internal state of this adapter component. Required for the State pattern.
      */

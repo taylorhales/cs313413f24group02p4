@@ -40,4 +40,5 @@ interface StopwatchSMStateView {
     void incTickCount();
     int getTickCount();
     void resetTickCount();
+    int getRunCount();
 }

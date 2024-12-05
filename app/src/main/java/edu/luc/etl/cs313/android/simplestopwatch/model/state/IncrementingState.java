@@ -29,6 +29,9 @@ class IncrementingState implements StopwatchState {
         sm.actionIncCount();
         sm.resetTickCount();
         sm.actionReset();
+        if (sm.getRunCount() == 99) {
+            sm.toDecrementingState();
+        }
 
     }
 
@@ -39,6 +42,7 @@ class IncrementingState implements StopwatchState {
         // if yes then start decrementing
         sm.incTickCount();
         if (sm.getTickCount() > 3) {
+            // beep
             sm.toDecrementingState();
         }
     }

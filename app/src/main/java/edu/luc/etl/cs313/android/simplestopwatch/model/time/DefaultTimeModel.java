@@ -42,7 +42,5 @@ public class DefaultTimeModel implements TimeModel {
     }
 
     @Override
-    public void decRunTime() {
-        runningTime--;
-    }
+    public void decRunTime() { runningTime = (runningTime - SEC_PER_TICK); }
 }

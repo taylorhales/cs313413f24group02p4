@@ -98,13 +98,16 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
 
     // actions
     @Override public void actionInit()       { toStoppedState(); actionReset(); }
-    @Override public void actionReset()      { timeModel.resetRuntime(); actionUpdateView(); }
+    @Override public void actionReset()      { timeModel.resetRuntime(); } // deleted updated view, checking to just use timer for the 3 second
     @Override public void actionStart()      { clockModel.start(); }
     @Override public void actionStop()       { clockModel.stop(); }
     @Override public void actionLap()        { timeModel.setLaptime(); }
-    @Override public void actionInc()        { timeModel.incRuntime(); actionUpdateView(); }
+    @Override public void actionInc()        { timeModel.incRuntime(); } // same thing here
     @Override public void actionUpdateView() { /* Log.d("DEBUG", "actionUpdateView called"); */ state.updateView(); }
-    @Override public void actionIncCount()   { runCount++; timeModel.setRunCount(runCount); actionUpdateView(); }
+    @Override public void actionIncCount()   { runCount++; timeModel.setRunCount(runCount); actionUpdateView(); } // increment the runCount
+    @Override public void actionDecCount()   { runCount--; timeModel.setRunCount(runCount); actionUpdateView(); } // begin to Decrement the count
+
+
     // notify listener to play the alarm sound
     @Override public void actionRingTheAlarm() {listener.playDefaultNotification();}
 }

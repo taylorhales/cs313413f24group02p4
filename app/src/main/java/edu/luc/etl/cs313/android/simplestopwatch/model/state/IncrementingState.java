@@ -24,12 +24,24 @@ class IncrementingState implements StopwatchState {
 
     @Override
     public void onIncrement() {
+        // increment the runTimeCount and reset the Tick Count
+        // also reset the 3 second timer
         sm.actionIncCount();
-        sm.toIncrementingState();
+        sm.resetTickCount();
+        sm.actionReset();
+
     }
 
     @Override
-    public void onTick() {throw new UnsupportedOperationException("onTick");}
+    public void onTick() {
+        // since clock is started onTick is now activated every second
+        // increase the tickCount and check if 3 seconds has passed,
+        // if yes then start decrementing
+        sm.incTickCount();
+        if (sm.getTickCount() > 3) {
+            sm.toDecrementingState();
+        }
+    }
 
     @Override
     public void onDecrement() {

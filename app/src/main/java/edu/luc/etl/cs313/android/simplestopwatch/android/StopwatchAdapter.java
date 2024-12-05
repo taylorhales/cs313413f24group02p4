@@ -135,4 +135,6 @@ public class StopwatchAdapter extends Activity implements StopwatchModelListener
     public void onStartStop(View view) {
         model.onStartStop();
     }
+
+    public void onDecrement(final View view) {model.onDecrement();}
 }

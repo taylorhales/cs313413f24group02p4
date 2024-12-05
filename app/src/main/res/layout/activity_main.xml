@@ -42,8 +42,8 @@
 
     <RelativeLayout
             android:id="@+id/buttons"
-            android:layout_width="150dp"
-            android:layout_height="75dp"
+            android:layout_width="146dp"
+            android:layout_height="74dp"
             android:layout_below="@id/timer"
             android:layout_centerHorizontal="true">
 
@@ -53,6 +53,7 @@
                 android:layout_height="match_parent"
                 android:onClick="onIncrement"
                 android:text="@string/activate"/>
+
     </RelativeLayout>
 
 </RelativeLayout>

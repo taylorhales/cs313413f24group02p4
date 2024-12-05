@@ -53,7 +53,13 @@ class DecrementingState implements StopwatchState {
 
     @Override
     public void onTick() {
-        throw new UnsupportedOperationException("onTick");
+        // once in decrement state, since clock is still going we now
+        // decrement the runTime count until it reaches 0, then we go to
+        // stopped state when 0 is reached
+        sm.actionDecCount();
+        if (sm.runCount == 0) {
+            sm.toStoppedState();
+        }
     }
 
 

@@ -31,6 +31,14 @@ class DecrementingState implements StopwatchState {
         if (sm.getTickCount() >= 3 || sm.getRuntime() == 99) {
             sm.decRunTime();
             sm.resetTickCount(); // Reset tick count after decrement
+
+            // Check if the time has reached zero
+            if(sm.getRuntime() <= 0){
+                sm.actionStop(); // Stop the timer
+                sm.actionRingTheAlarm(); // Start the alarm
+                sm.toStoppedState(); // Change to stopped state
+                return;
+            }
         }
 
         // Update the view to reflect the new time

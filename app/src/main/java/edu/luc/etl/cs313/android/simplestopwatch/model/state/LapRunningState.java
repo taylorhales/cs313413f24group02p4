@@ -35,6 +35,11 @@ class LapRunningState implements StopwatchState {
     }
 
     @Override
+    public void onDecrement() {
+        sm.toDecrementingState(); // Transition to DecrementingState when ticking starts
+    }
+
+    @Override
     public void updateView() {
         sm.updateUILaptime();
     }

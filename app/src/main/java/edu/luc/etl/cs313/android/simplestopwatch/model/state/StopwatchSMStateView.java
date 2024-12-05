@@ -14,6 +14,7 @@ interface StopwatchSMStateView {
     void toLapRunningState();
     void toLapStoppedState();
     void toIncrementingState();
+    void toDecrementingState();
 
 
     // actions
@@ -30,4 +31,11 @@ interface StopwatchSMStateView {
     // state-dependent UI updates
     void updateUIRuntime();
     void updateUILaptime();
+
+    //temp to be organized later
+    int getRuntime();
+    void decRunTime();
+    void incTickCount();
+    int getTickCount();
+    void resetTickCount();
 }

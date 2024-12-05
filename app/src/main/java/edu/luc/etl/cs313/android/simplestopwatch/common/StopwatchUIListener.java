@@ -9,4 +9,5 @@ public interface StopwatchUIListener {
     void onStartStop();
     void onLapReset();
     void onIncrement();
+    void onDecrement();
 }

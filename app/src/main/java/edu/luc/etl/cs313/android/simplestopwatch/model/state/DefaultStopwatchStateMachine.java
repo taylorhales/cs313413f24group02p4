@@ -1,5 +1,6 @@
 package edu.luc.etl.cs313.android.simplestopwatch.model.state;
 
+//import android.util.Log;
 import edu.luc.etl.cs313.android.simplestopwatch.common.StopwatchModelListener;
 import edu.luc.etl.cs313.android.simplestopwatch.model.clock.ClockModel;
 import edu.luc.etl.cs313.android.simplestopwatch.model.time.TimeModel;
@@ -21,6 +22,34 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     private final ClockModel clockModel;
 
     public int runCount = 0;
+
+    private int tickCount = 0;
+
+    //temp to be organized
+    @Override
+    public int getRuntime() {
+        return timeModel.getRuntime();
+    }
+
+    @Override
+    public void decRunTime() {
+        timeModel.decRunTime();
+    }
+
+    @Override
+    public void incTickCount() {
+        tickCount++;
+    }
+
+    @Override
+    public int getTickCount() {
+        return tickCount;
+    }
+
+    @Override
+    public void resetTickCount() {
+        tickCount = 0;
+    }
 
     /**
      * The internal state of this adapter component. Required for the State pattern.
@@ -46,16 +75,18 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     @Override public synchronized void onLapReset()  { state.onLapReset(); }
     @Override public synchronized void onTick()      { state.onTick(); }
     @Override public synchronized void onIncrement() { state.onIncrement(); }
+    @Override public synchronized void onDecrement() { /*Log.d("DEBUG", "onDecrement called, current state: " + state.getClass().getSimpleName()); */ state.onDecrement(); }
 
     @Override public void updateUIRuntime() { listener.onTimeUpdate(timeModel.getRuntime()); }
     @Override public void updateUILaptime() { listener.onTimeUpdate(timeModel.getLaptime()); }
 
     // known states
-    private final StopwatchState STOPPED     = new StoppedState(this);
-    private final StopwatchState RUNNING     = new RunningState(this);
-    private final StopwatchState LAP_RUNNING = new LapRunningState(this);
-    private final StopwatchState LAP_STOPPED = new LapStoppedState(this);
-    private final StopwatchState INCREMENTING= new IncrementingState(this);
+    private final StopwatchState STOPPED      = new StoppedState(this);
+    private final StopwatchState RUNNING      = new RunningState(this);
+    private final StopwatchState LAP_RUNNING  = new LapRunningState(this);
+    private final StopwatchState LAP_STOPPED  = new LapStoppedState(this);
+    private final StopwatchState INCREMENTING = new IncrementingState(this);
+    private final StopwatchState DECREMENTING = new DecrementingState(this);
 
     // transitions
     @Override public void toRunningState()      { setState(RUNNING); }
@@ -63,6 +94,7 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     @Override public void toLapRunningState()   { setState(LAP_RUNNING); }
     @Override public void toLapStoppedState()   { setState(LAP_STOPPED); }
     @Override public void toIncrementingState() { setState(INCREMENTING);  }
+    @Override public void toDecrementingState() { setState(DECREMENTING); }
 
     // actions
     @Override public void actionInit()       { toStoppedState(); actionReset(); }
@@ -71,7 +103,7 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     @Override public void actionStop()       { clockModel.stop(); }
     @Override public void actionLap()        { timeModel.setLaptime(); }
     @Override public void actionInc()        { timeModel.incRuntime(); actionUpdateView(); }
-    @Override public void actionUpdateView() { state.updateView(); }
+    @Override public void actionUpdateView() { /* Log.d("DEBUG", "actionUpdateView called"); */ state.updateView(); }
     @Override public void actionIncCount()   { runCount++; timeModel.setRunCount(runCount); actionUpdateView(); }
     // notify listener to play the alarm sound
     @Override public void actionRingTheAlarm() {listener.playDefaultNotification();}

@@ -23,6 +23,8 @@ public class DefaultClockModel implements ClockModel {
 
     @Override
     public void start() {
+
+
         timer = new Timer();
 
 
@@ -39,4 +41,6 @@ public class DefaultClockModel implements ClockModel {
     public void stop() {
         timer.cancel();
     }
+
+
 }

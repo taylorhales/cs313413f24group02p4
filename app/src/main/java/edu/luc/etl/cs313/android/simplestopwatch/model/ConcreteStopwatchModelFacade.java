@@ -49,7 +49,7 @@ public class ConcreteStopwatchModelFacade implements StopwatchModelFacade {
     }
 
     @Override
-    public void onIncrement() { stateMachine.onIncrement(); }
+    public void onAction() { stateMachine.onAction(); }
 
     @Override
     public void onDecrement() { stateMachine.onDecrement(); }

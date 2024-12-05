@@ -23,7 +23,7 @@ class IncrementingState implements StopwatchState {
     }
 
     @Override
-    public void onIncrement() {
+    public void onAction() {
         // increment the runTimeCount and reset the Tick Count
         // also reset the 3 second timer
         sm.actionIncCount();

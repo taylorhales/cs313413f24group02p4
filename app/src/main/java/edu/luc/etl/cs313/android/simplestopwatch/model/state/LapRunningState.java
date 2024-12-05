@@ -29,7 +29,7 @@ class LapRunningState implements StopwatchState {
     }
 
     @Override
-    public void onIncrement() {
+    public void onAction() {
         sm.actionIncCount();
         sm.toIncrementingState();
     }

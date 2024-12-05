@@ -28,8 +28,7 @@ class RunningState implements StopwatchState {
 
     @Override
     public void onTick() {
-        sm.actionInc();
-        sm.toRunningState();
+        sm.actionRingTheAlarm(); // trigger alarm action while in StoppedState
     }
 
     @Override
@@ -40,9 +39,9 @@ class RunningState implements StopwatchState {
 
 
     @Override
-    public void onIncrement() {
-        sm.actionIncCount();
-        sm.toIncrementingState();
+    public void onAction() {
+        sm.actionStop();
+        sm.toStoppedState();
     }
 
 

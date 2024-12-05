@@ -24,31 +24,16 @@ class DecrementingState implements StopwatchState {
 
     @Override
     public void onDecrement() {
-        // Increment tick count
-        sm.incTickCount();
-
-        // Decrement running time after 3 seconds or if runtime equals 99
-        if (sm.getTickCount() >= 3 || sm.getRuntime() == 99) {
-            sm.decRunTime();
-            sm.resetTickCount(); // Reset tick count after decrement
-
-            // Check if the time has reached zero
-            if(sm.getRuntime() <= 0){
-                sm.actionStop(); // Stop the timer
-                sm.actionRingTheAlarm(); // Start the alarm
-                sm.toStoppedState(); // Change to stopped state
-                return;
-            }
-        }
-
-        // Update the view to reflect the new time
-        //Log.d("DEBUG", "Runtime decremented to: " + sm.getRuntime());
-        sm.actionUpdateView();
+        //
     }
 
     @Override
-    public void onIncrement() {
-        sm.toIncrementingState();
+    public void onAction() {
+        // if onIncrement button is pressed, runCount is resetted and
+        // sent to stopped state
+        sm.actionResetRunCount();
+        sm.actionStop();
+        sm.toStoppedState();
     }
 
     @Override
@@ -58,7 +43,7 @@ class DecrementingState implements StopwatchState {
         // stopped state when 0 is reached
         sm.actionDecCount();
         if (sm.runCount == 0) {
-            sm.toStoppedState();
+            sm.toRunningState();
         }
     }
 

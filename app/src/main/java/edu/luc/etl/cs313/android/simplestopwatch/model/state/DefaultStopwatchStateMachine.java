@@ -74,7 +74,7 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     @Override public synchronized void onStartStop() { state.onStartStop(); }
     @Override public synchronized void onLapReset()  { state.onLapReset(); }
     @Override public synchronized void onTick()      { state.onTick(); }
-    @Override public synchronized void onIncrement() { state.onIncrement(); }
+    @Override public synchronized void onAction()    { state.onAction(); }
     @Override public synchronized void onDecrement() { /*Log.d("DEBUG", "onDecrement called, current state: " + state.getClass().getSimpleName()); */ state.onDecrement(); }
 
     @Override public void updateUIRuntime() { listener.onTimeUpdate(timeModel.getRuntime()); }
@@ -98,7 +98,7 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
 
     // actions
     @Override public void actionInit()       { toStoppedState(); actionReset(); }
-    @Override public void actionReset()      { timeModel.resetRuntime(); } // deleted updated view, checking to just use timer for the 3 second
+    @Override public void actionReset()      { timeModel.resetRuntime();} // deleted updated view, checking to just use timer for the 3 second
     @Override public void actionStart()      { clockModel.start(); }
     @Override public void actionStop()       { clockModel.stop(); }
     @Override public void actionLap()        { timeModel.setLaptime(); }
@@ -106,7 +106,7 @@ public class DefaultStopwatchStateMachine implements StopwatchStateMachine {
     @Override public void actionUpdateView() { /* Log.d("DEBUG", "actionUpdateView called"); */ state.updateView(); }
     @Override public void actionIncCount()   { runCount++; timeModel.setRunCount(runCount); actionUpdateView(); } // increment the runCount
     @Override public void actionDecCount()   { runCount--; timeModel.setRunCount(runCount); actionUpdateView(); } // begin to Decrement the count
-
+    @Override public void actionResetRunCount() {runCount = 0; timeModel.setRunCount(runCount); actionUpdateView(); }
 
     // notify listener to play the alarm sound
     @Override public void actionRingTheAlarm() {listener.playDefaultNotification();}

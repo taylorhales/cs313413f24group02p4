@@ -23,7 +23,7 @@ class StoppedState implements StopwatchState {
     }
 
     @Override
-    public void onIncrement() {
+    public void onAction() {
         // When onIncrement button is pressed, start the clock model for 3 second timer
         // while switching to incrementing state and increase the count
         sm.actionStart();
@@ -33,7 +33,7 @@ class StoppedState implements StopwatchState {
 
     @Override
     public void onTick() {
-        sm.actionRingTheAlarm(); // trigger alarm action while in StoppedState
+        throw new UnsupportedOperationException("onTick");
     }
 
     @Override

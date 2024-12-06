@@ -1,0 +1,37 @@
+The development of this stopwatch application was a collaborative and iterative process. Our group leveraged agile
+methodologies, emphasizing regular check-ins and iterative improvements to achieve a functional application that aligns
+with the project requirements.
+
+The use of a shared repository through GitHub facilitated collaboration, as it allowed seamless integration and tracking
+of individual contributions. We employed pair programming during key stages, especially during the more difficult
+moments like implementing the decrementing state. This approach not only enhanced the quality of our code but also
+accelerated our learning curve by fostering knowledge-sharing among team members. When one member was able to figure
+out how to fix the issue that the others were struggling with, they would share with the rest of the group how they got
+to the resolution during our check-in meetings. As a team, we were all able to leverage each other’s knowledge to create
+a functioning application while expanding each other’s knowledge for future projects.
+
+Refactoring was another crucial step in our journey, particularly for improving code readability and maintainability.
+For instance, we refactored repetitive logic in state classes into shared utility methods within the state machine.
+This reduced duplication and simplified future enhancements. The adoption of the State design pattern allowed us to
+encapsulate state-specific behavior while maintaining a clear separation of concerns. Dependencies between the
+StopwatchAdapter, ConcreteStopwatchModelFacade, and state machine were injected to promote loose coupling. This
+approach enabled the replacement of components as needed.
+
+The UML extended state diagram served as a blueprint for the implementation, ensuring consistency between the design
+and code. The similarities between the model and code are evident in the adherence to state transitions and actions
+defined in the UML diagram. For example, the transitions between "Not Active," "Incrementing," "Countdown," and
+"Alarm Sounding" states are directly reflected in the DefaultStopwatchStateMachine class. Each state, such as
+IncrementingState and DecrementingState, implements the StopwatchState interface, encapsulating behavior specific to
+that state as outlined in the model.
+
+However, there are also notable differences. The code incorporates additional mechanisms to handle asynchronous events,
+such as ticks from the ClockModel. These elements are not explicitly represented in the UML model but are essential for
+the real-time operation of the stopwatch.
+
+In hindsight, coding first for the stopwatch's core functionality—such as time increment, decrement, and UI
+updates—allowed us to quickly iterate and refine. However, for the state management logic, modeling first proved more
+effective. The UML model provided clarity, enabling us to identify potential edge cases and conflicts before
+implementation as well as seeing how it was all connected.
+
+Overall, this project highlighted the value of combining structured modeling with flexible coding practices to create a
+robust and extensible stopwatch application.

@@ -1,6 +1,5 @@
 package edu.luc.etl.cs313.android.simplestopwatch.model.state;
 
-//import android.util.Log;
 import edu.luc.etl.cs313.android.simplestopwatch.R;
 
 class DecrementingState implements StopwatchState {
@@ -19,12 +18,12 @@ class DecrementingState implements StopwatchState {
 
     @Override
     public void onLapReset() {
-        // No action required for Lap/Reset in DecrementingState
+        // no action
     }
 
     @Override
     public void onDecrement() {
-        //
+        // no action
     }
 
     @Override
@@ -50,7 +49,6 @@ class DecrementingState implements StopwatchState {
 
     @Override
     public void updateView() {
-        //Log.d("DEBUG", "Updating UI runtime to: " + sm.getRuntime());
         sm.updateUIRuntime();
     }
 

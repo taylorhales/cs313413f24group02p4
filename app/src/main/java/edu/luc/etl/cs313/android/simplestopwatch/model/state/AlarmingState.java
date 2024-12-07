@@ -1,6 +1,5 @@
 package edu.luc.etl.cs313.android.simplestopwatch.model.state;
 
-//import android.util.Log;
 import edu.luc.etl.cs313.android.simplestopwatch.R;
 
 class AlarmingState implements StopwatchState {
@@ -33,7 +32,6 @@ class AlarmingState implements StopwatchState {
 
     @Override
     public void onDecrement() {
-        //Log.d("DEBUG", "DecrementingState onDecrement invoked");
         sm.toDecrementingState(); // Transition to DecrementingState when ticking starts
     }
 
